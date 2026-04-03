@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero';
+import Summary from '../components/Summary';
+import TechnicalSkills from '../components/TechnicalSkills';
+import Experience from '../components/Experience';
+import Education from '../components/Education';
+---
+
+<Layout title="Crazy | Backend Developer">
+	<main class="container mx-auto px-6 py-20 sm:py-32 max-w-5xl space-y-16">
+        <Hero client:load />
+        <Summary client:visible />
+        <TechnicalSkills client:visible />
+        <Experience client:visible />
+        <Education client:visible />
+    </main>
+</Layout>
