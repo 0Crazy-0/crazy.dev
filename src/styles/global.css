@@ -1,1 +1,14 @@
 @import "tailwindcss";
+
+@theme {
+  --color-dark: #222831;
+  --color-card: #393E46;
+  --color-muted: #948979;
+  --color-light: #DFD0B8;
+  
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+body {
+  @apply bg-dark text-light antialiased selection:bg-muted selection:text-dark;
+}
