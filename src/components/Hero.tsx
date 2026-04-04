@@ -1,4 +1,6 @@
 import { motion } from 'motion/react';
+import { FiMail, FiLinkedin } from 'react-icons/fi';
+import { FaGithub } from 'react-icons/fa';
 
 export default function Hero() {
   return (
@@ -36,7 +38,7 @@ export default function Hero() {
       </div>
       
       <motion.div 
-        className="mt-8 flex gap-4"
+        className="mt-8 flex flex-wrap gap-4"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8 }}
@@ -44,15 +46,27 @@ export default function Hero() {
         <a 
           href="https://github.com/0CrazyLove" 
           target="_blank" 
-          className="px-6 py-3 bg-light text-dark font-semibold rounded-lg hover:scale-105 transition-transform"
+          rel="noreferrer"
+          className="flex items-center gap-2 px-6 py-3 bg-light text-dark font-semibold rounded-lg hover:scale-105 transition-transform"
         >
-          View GitHub
+          <FaGithub className="text-2xl" />
+         GitHub
         </a>
         <a 
           href="mailto:0crazy.dev@gmail.com" 
-          className="px-6 py-3 border border-muted text-light font-semibold rounded-lg hover:bg-card hover:border-light transition-all"
+          className="flex items-center gap-2 px-6 py-3 border border-muted text-light font-semibold rounded-lg hover:bg-card hover:border-light transition-all"
         >
+          <FiMail className="text-2xl" />
           Contact Me
+        </a>
+        <a 
+          href="https://linkedin.com/" 
+          target="_blank" 
+          rel="noreferrer"
+          className="flex items-center gap-2 px-6 py-3 border border-muted text-light font-semibold rounded-lg hover:bg-card hover:border-light transition-all"
+        >
+          <FiLinkedin className="text-2xl" />
+          LinkedIn
         </a>
       </motion.div>
     </motion.section>
