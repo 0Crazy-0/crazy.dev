@@ -1,6 +1,31 @@
 import { useRef } from 'react';
 import { motion, useMotionValue, useSpring } from 'motion/react';
-import { FaGithub } from 'react-icons/fa';
+import { 
+  FaGithub, FaCubes, FaSitemap, 
+  FaExchangeAlt, FaCheckDouble, FaDatabase, FaShieldAlt 
+} from 'react-icons/fa';
+import { 
+  SiDotnet, SiPostgresql, SiDocker, 
+  SiAstro, SiReact, SiTailwindcss 
+} from 'react-icons/si';
+import { TbBrandCSharp } from 'react-icons/tb';
+
+const techIconMap: Record<string, any> = {
+  "C#": TbBrandCSharp,
+  ".NET 10": SiDotnet,
+  ".NET 9": SiDotnet,
+  "PostgreSQL": SiPostgresql,
+  "Clean Architecture": FaCubes,
+  "DDD": FaSitemap,
+  "CQRS": FaExchangeAlt,
+  "xUnit": FaCheckDouble,
+  "Entity Framework Core": FaDatabase,
+  "ASP.NET Core Identity": FaShieldAlt,
+  "Docker": SiDocker,
+  "Astro": SiAstro,
+  "React 19": SiReact,
+  "Tailwind CSS": SiTailwindcss,
+};
 
 interface ExperienceItem {
   id: number;
@@ -37,7 +62,7 @@ const experiences: ExperienceItem[] = [
       "Integrated a hybrid authentication system combining JWT with Refresh Token Rotation and Google OAuth 2.0, enforcing strict identity access policies.",
       "Containerized the full infrastructure using Docker with multi-stage builds and Docker Compose, ensuring consistent deployments across all services."
     ],
-    tech: ["C#", ".NET 9", "Astro", "React 19", "Docker", "PostgreSQL", "Tailwind CSS"],
+    tech: ["C#", ".NET 9", "Entity Framework Core", "ASP.NET Core Identity", "PostgreSQL", "Docker", "Astro", "React 19", "Tailwind CSS"],
     github: "https://github.com/0CrazyLove/ServiceHub"
   }
 ];
@@ -106,11 +131,15 @@ function ExperienceCard({ exp, index }: { exp: ExperienceItem; index: number }) 
       </ul>
 
       <div className="flex flex-wrap gap-2 mt-6">
-        {exp.tech.map(t => (
-          <span key={t} className="text-xs font-semibold px-3 py-1 bg-card text-light rounded-md">
-            {t}
-          </span>
-        ))}
+        {exp.tech.map(t => {
+          const Icon = techIconMap[t];
+          return (
+            <span key={t} className="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-md bg-card/10 text-muted/90 border border-card/30 hover:bg-card/40 hover:text-light transition-colors duration-300 cursor-default">
+              {Icon && <Icon className="w-3.5 h-3.5" />}
+              {t}
+            </span>
+          );
+        })}
       </div>
     </motion.div>
   );
