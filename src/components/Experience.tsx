@@ -1,4 +1,5 @@
-import { motion } from 'motion/react';
+import { useRef } from 'react';
+import { motion, useMotionValue, useSpring } from 'motion/react';
 import { FaGithub } from 'react-icons/fa';
 
 interface ExperienceItem {
@@ -41,6 +42,80 @@ const experiences: ExperienceItem[] = [
   }
 ];
 
+function ExperienceCard({ exp, index }: { exp: ExperienceItem; index: number }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const mouseY = useMotionValue(4);
+  const smoothY = useSpring(mouseY, { stiffness: 98, damping: 40 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    let yPos = e.clientY - rect.top - 8;
+    yPos = Math.max(0, Math.min(yPos, rect.height - 16));
+    mouseY.set(yPos);
+  };
+
+  const handleMouseLeave = () => {
+    mouseY.set(4);
+  };
+
+  return (
+    <motion.div
+      ref={cardRef}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ delay: index * 0.2, duration: 0.6 }}
+      className="group relative pl-8 border-l-2 border-card hover:border-muted transition-colors duration-300"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      {/* Timeline Dot */}
+      <motion.div
+        className="absolute w-4 h-4 rounded-full bg-dark border-2 border-muted -left-2.25 group-hover:bg-muted transition-colors duration-300"
+        style={{ y: smoothY, top: 0 }}
+      />
+
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-4">
+        <div className="flex items-center gap-3">
+          <h3 className="text-2xl font-semibold text-light">{exp.title}</h3>
+          <a
+            href={exp.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted hover:text-light transition-colors"
+            aria-label="Ver repositorio en GitHub"
+            title="Ver repositorio en GitHub"
+          >
+            <FaGithub className="text-2xl" />
+          </a>
+        </div>
+        <span className="text-sm font-medium text-muted bg-card px-3 py-1 rounded-full whitespace-nowrap">{exp.period}</span>
+      </div>
+
+      {exp.company && (
+        <h4 className="text-xl text-muted font-medium mb-4">{exp.company}</h4>
+      )}
+
+      <p className="text-lg text-light/80 mb-4">{exp.description}</p>
+
+      <ul className="list-disc list-outside ml-5 space-y-2 text-muted mb-6">
+        {exp.features.map((feature, i) => (
+          <li key={i} className="pl-1 leading-relaxed">{feature}</li>
+        ))}
+      </ul>
+
+      <div className="flex flex-wrap gap-2 mt-6">
+        {exp.tech.map(t => (
+          <span key={t} className="text-xs font-semibold px-3 py-1 bg-card text-light rounded-md">
+            {t}
+          </span>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
 export default function Experience() {
   return (
     <motion.section
@@ -54,54 +129,7 @@ export default function Experience() {
 
       <div className="space-y-12">
         {experiences.map((exp, index) => (
-          <motion.div
-            key={exp.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: index * 0.2, duration: 0.6 }}
-            className="group relative pl-8 border-l-2 border-card hover:border-muted transition-colors duration-300"
-          >
-            {/* Timeline Dot */}
-            <div className="absolute w-4 h-4 rounded-full bg-dark border-2 border-muted -left-2.25 top-1 group-hover:bg-muted transition-colors duration-300" />
-
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-4">
-              <div className="flex items-center gap-3">
-                <h3 className="text-2xl font-semibold text-light">{exp.title}</h3>
-                <a 
-                  href={exp.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted hover:text-light transition-colors"
-                  aria-label="Ver repositorio en GitHub"
-                  title="Ver repositorio en GitHub"
-                >
-                  <FaGithub className="text-2xl" />
-                </a>
-              </div>
-              <span className="text-sm font-medium text-muted bg-card px-3 py-1 rounded-full whitespace-nowrap">{exp.period}</span>
-            </div>
-
-            {exp.company && (
-              <h4 className="text-xl text-muted font-medium mb-4">{exp.company}</h4>
-            )}
-
-            <p className="text-lg text-light/80 mb-4">{exp.description}</p>
-
-            <ul className="list-disc list-outside ml-5 space-y-2 text-muted mb-6">
-              {exp.features.map((feature, i) => (
-                <li key={i} className="pl-1 leading-relaxed">{feature}</li>
-              ))}
-            </ul>
-
-            <div className="flex flex-wrap gap-2 mt-6">
-              {exp.tech.map(t => (
-                <span key={t} className="text-xs font-semibold px-3 py-1 bg-card text-light rounded-md">
-                  {t}
-                </span>
-              ))}
-            </div>
-          </motion.div>
+          <ExperienceCard key={exp.id} exp={exp} index={index} />
         ))}
       </div>
     </motion.section>
