@@ -8,7 +8,7 @@ import { DiMsqlServer } from 'react-icons/di';
 import { FiServer, FiLayers, FiCheckCircle, FiTool } from 'react-icons/fi';
 import {
   FaServer, FaCubes, FaCodeBranch, FaSitemap, FaCheckDouble,
-  FaVial, FaCode, FaExchangeAlt, FaClock, FaDatabase
+  FaVial, FaCode, FaExchangeAlt, FaClock, FaDatabase, FaLayerGroup
 } from 'react-icons/fa';
 
 const skillCategories = [
@@ -17,7 +17,7 @@ const skillCategories = [
     icon: FiServer,
     skills: [
       { name: "C#", icon: TbBrandCSharp },
-      { name: ".NET 8", icon: SiDotnet },
+      { name: ".NET 10", icon: SiDotnet },
       { name: "ASP.NET Core", icon: SiDotnet },
       { name: "Entity Framework Core", icon: FaDatabase },
       { name: "PostgreSQL", icon: SiPostgresql },
@@ -29,6 +29,7 @@ const skillCategories = [
     icon: FiLayers,
     skills: [
       { name: "Clean Architecture", icon: FaCubes },
+      { name: "N-Tier Architecture", icon: FaLayerGroup },
       { name: "Domain-Driven Design", icon: FaSitemap },
       { name: "CQRS", icon: FaExchangeAlt },
       { name: "MediatR", icon: FaCodeBranch },
@@ -77,7 +78,7 @@ const categoryVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { 
+    transition: {
       duration: 0.5,
       staggerChildren: 0.05,
       delayChildren: 0.1
