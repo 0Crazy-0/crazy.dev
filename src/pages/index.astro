@@ -1,22 +1,31 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero';
-import Summary from '../components/Summary';
-import TechnicalSkills from '../components/TechnicalSkills';
-import Experience from '../components/Experience';
-import Education from '../components/Education';
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero";
+import Summary from "../components/Summary";
+import TechnicalSkills from "../components/TechnicalSkills";
+import Experience from "../components/Experience";
 ---
 
 <Layout title="Crazy | Backend Developer">
-	<main class="container mx-auto px-6 py-20 sm:py-32 max-w-5xl">
-        <div class="min-h-[calc(100vh-5rem)] sm:min-h-[calc(100vh-8rem)] flex flex-col justify-center">
+    <main class="container mx-auto px-6 py-20 sm:py-32 max-w-5xl">
+        <div
+            class="min-h-[calc(100vh-5rem)] sm:min-h-[calc(100vh-8rem)] flex flex-col justify-center"
+        >
             <Hero client:load />
             <Summary client:visible />
         </div>
         <div class="space-y-16">
             <TechnicalSkills client:load />
             <Experience client:load />
-            <Education client:load />
+        </div>
+
+        <!-- Subtle End Indicator -->
+        <div class="mt-20 sm:mt-28 flex justify-center opacity-30 hover:opacity-50 transition-opacity duration-300">
+            <div class="flex gap-4">
+                <span class="w-1.5 h-1.5 rounded-full bg-muted"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-muted"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-muted"></span>
+            </div>
         </div>
     </main>
 </Layout>
