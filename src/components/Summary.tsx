@@ -14,7 +14,7 @@ export default function Summary() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.7 }}
       >
-        Professional Summary
+        Summary
       </motion.h2>
       <motion.p className="text-lg text-muted leading-relaxed max-w-4xl"
         initial={{ opacity: 0 }}
