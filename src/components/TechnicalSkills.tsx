@@ -68,76 +68,76 @@ const sectionVariants = {
     opacity: 1,
     transition: {
       duration: 0.7,
-      staggerChildren: 0.1
+      staggerChildren: 0.12
     }
   }
 };
 
 const categoryVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 16 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.5,
-      staggerChildren: 0.05,
+      staggerChildren: 0.04,
       delayChildren: 0.1
     }
   }
 };
 
 const skillVariants = {
-  hidden: { opacity: 0, scale: 0.95 },
+  hidden: { opacity: 0, x: -6 },
   visible: {
     opacity: 1,
-    scale: 1,
-    transition: { duration: 0.3 }
+    x: 0,
+    transition: { duration: 0.25 }
   }
 };
 
 export default function TechnicalSkills() {
   return (
     <motion.section
-      className="py-16 border-t border-card/30"
+      className="py-12 border-t border-card/50"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
       variants={sectionVariants}
     >
-      <div className="mb-10">
-        <h2 className="text-3xl font-bold text-light mb-2">Technical Skills</h2>
-      </div>
+      <h2 className="text-3xl font-bold text-light mb-10">Technical Skills</h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
-        {skillCategories.map((category, index) => {
+      <div className="space-y-0 divide-y divide-card/30">
+        {skillCategories.map((category) => {
           const CategoryIcon = category.icon;
           return (
             <motion.div
               key={category.title}
               variants={categoryVariants}
-              className="group h-full p-6 sm:p-8 rounded-2xl bg-card/10 border border-card/20 hover:bg-card/15 hover:border-accent/30 transition-colors duration-500"
+              className="group py-7 first:pt-0 last:pb-0"
             >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 rounded-lg bg-card/20 text-accent group-hover:bg-accent/10 group-hover:text-accent transition-colors duration-300">
-                  <CategoryIcon className="w-5 h-5" />
+              <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-8">
+                {/* Category label */}
+                <div className="flex items-center gap-2.5 sm:w-52 shrink-0">
+                  <CategoryIcon className="w-4 h-4 text-muted/60 group-hover:text-muted transition-colors duration-300" />
+                  <h3 className="text-sm font-semibold text-muted uppercase tracking-widest">{category.title}</h3>
                 </div>
-                <h3 className="text-xl font-medium text-light/90">{category.title}</h3>
-              </div>
 
-              <div className="flex flex-wrap gap-2.5">
-                {category.skills.map((skill, skillIdx) => {
-                  const SkillIcon = skill.icon;
-                  return (
-                    <motion.span
-                      key={skill.name}
-                      variants={skillVariants}
-                      className="inline-flex items-center gap-2 px-3.5 py-1.5 text-sm font-medium rounded-full bg-card/10 text-muted/90 border border-card/30 hover:bg-card/40 hover:text-light transition-colors duration-300 cursor-default"
-                    >
-                      {SkillIcon && <SkillIcon className="w-4 h-4" />}
-                      {skill.name}
-                    </motion.span>
-                  );
-                })}
+                {/* Skills */}
+                <div className="flex flex-wrap gap-2.5">
+                  {category.skills.map((skill) => {
+                    const SkillIcon = skill.icon;
+                    return (
+                      <motion.span
+                        key={skill.name}
+                        variants={skillVariants}
+                        className="inline-flex items-center gap-2 px-3.5 py-2 text-sm rounded-lg bg-card/10 text-light/80 hover:bg-card/25 hover:text-light transition-colors duration-300 cursor-default"
+                      >
+                        {SkillIcon && <SkillIcon className="w-4 h-4 text-muted/60" />}
+                        {skill.name}
+                      </motion.span>
+                    );
+                  })}
+                </div>
               </div>
             </motion.div>
           );
