@@ -5,7 +5,7 @@ import { FaGithub } from 'react-icons/fa';
 export default function Hero() {
   return (
     <motion.section
-      className="flex flex-col gap-4 py-10"
+      className="flex flex-col gap-3 sm:gap-4 py-6 sm:py-10"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
@@ -39,7 +39,7 @@ export default function Hero() {
       </div>
 
       <motion.div
-        className="mt-8 flex flex-wrap gap-4"
+        className="mt-4 sm:mt-8 flex flex-wrap gap-3 sm:gap-4"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8 }}
