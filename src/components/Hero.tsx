@@ -45,7 +45,7 @@ export default function Hero() {
         transition={{ delay: 0.8 }}
       >
         <a
-          href="https://github.com/0CrazyLove"
+          href="https://github.com/0Crazy-0"
           target="_blank"
           rel="noreferrer"
           className="flex items-center gap-2 px-6 py-3 bg-light text-dark font-semibold rounded-lg hover:scale-105 transition-transform"
@@ -61,7 +61,7 @@ export default function Hero() {
           Contact Me
         </a>
         <a
-          href="https://linkedin.com/"
+          href="www.linkedin.com/in/crazydev"
           target="_blank"
           rel="noreferrer"
           className="flex items-center gap-2 px-6 py-3 border border-muted text-light font-semibold rounded-lg hover:bg-card hover:border-light transition-all"

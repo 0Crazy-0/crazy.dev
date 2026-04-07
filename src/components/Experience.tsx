@@ -1,12 +1,12 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, useSpring } from 'motion/react';
-import {
-  FaGithub, FaCubes, FaSitemap,
-  FaExchangeAlt, FaCheckDouble, FaDatabase, FaShieldAlt
+import { 
+  FaGithub, FaCubes, FaSitemap, 
+  FaExchangeAlt, FaCheckDouble, FaDatabase, FaShieldAlt 
 } from 'react-icons/fa';
-import {
-  SiDotnet, SiPostgresql, SiDocker,
-  SiAstro, SiReact, SiTailwindcss
+import { 
+  SiDotnet, SiPostgresql, SiDocker, 
+  SiAstro, SiReact, SiTailwindcss 
 } from 'react-icons/si';
 import { TbBrandCSharp } from 'react-icons/tb';
 
@@ -61,7 +61,7 @@ const experiences: ExperienceItem[] = [
       "Built a comprehensive unit test suite (xUnit, Moq, FluentValidation) covering critical medical business rules."
     ],
     tech: ["C#", ".NET 10", "PostgreSQL", "Clean Architecture", "DDD", "CQRS", "xUnit"],
-    github: "https://github.com/0CrazyLove/ClinicFlow"
+    github: "https://github.com/0Crazy-0/ClinicFlow"
   },
   {
     id: 2,
@@ -74,7 +74,7 @@ const experiences: ExperienceItem[] = [
       "Containerized the full infrastructure using Docker with multi-stage builds and Docker Compose, ensuring consistent deployments across all services."
     ],
     tech: ["C#", ".NET 9", "Entity Framework Core", "ASP.NET Core Identity", "PostgreSQL", "Docker", "Astro", "React 19", "Tailwind CSS"],
-    github: "https://github.com/0CrazyLove/ServiceHub"
+    github: "https://github.com/0Crazy-0/ServiceHub"
   }
 ];
 
@@ -153,6 +153,7 @@ function ExperienceCard({ exp, index, isMobile }: { exp: ExperienceItem; index: 
     );
   }
 
+  // Desktop: full animations with mouse tracking
   return (
     <motion.div
       ref={cardRef}
